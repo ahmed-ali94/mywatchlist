@@ -1,7 +1,9 @@
-<?php 
+<?php
 
 if ( isset($_POST["email"]) && !empty($_POST["email"]) AND isset($_POST["pwd"]) && !empty($_POST["pwd"]) )
 {
+    session_start(); // Creates a new session 
+
     require_once "sql_settings.php";
 
     require_once "sanatise_data.php";
@@ -80,7 +82,7 @@ if ( isset($_POST["email"]) && !empty($_POST["email"]) AND isset($_POST["pwd"]) 
 
                 // The query to auth login
 
-                $query = "SELECT Email, Pwd, Active FROM $table WHERE Email='$email' AND Pwd='$password' AND Active='1'";
+                $query = "SELECT Email, Pwd, Active, Username FROM $table WHERE Email='$email' AND Pwd='$password' AND Active='1'";
 
                 $result = mysqli_query($conn,$query);
 
@@ -95,10 +97,14 @@ if ( isset($_POST["email"]) && !empty($_POST["email"]) AND isset($_POST["pwd"]) 
 
                     if ($rows == 1)
                     {
+                        // Create a session after user has logged in. 
+                        $userinfo = mysqli_fetch_assoc($result);
+                        $_SESSION["Username"] = $userinfo["Username"];
+
                         // free the memory assocaited with the login result
                         mysqli_free_result($result);
                         mysqli_close($conn);
-                        echo "logged in";
+                        echo 200;
                     }
 
                     else

@@ -141,7 +141,19 @@ function login()
             {
                 var result = xhr.responseText;
 
-                document.getElementById("login_message").innerHTML = result;
+                if ( result == 200 )
+                {
+                    // change header links 
+
+                    
+
+
+                }
+                else
+                {
+                    document.getElementById("login_message").innerHTML = result;
+
+                }
 
             }
         }

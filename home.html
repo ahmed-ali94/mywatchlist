@@ -5,6 +5,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <!---CSS-->
     <link rel="stylesheet" href="css/bootstrap.css" />
+    <link rel="stylesheet" href="css/style.css" />
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.13.1/css/all.css" integrity="sha384-xxzQGERXS00kBmZW/6qxqJPyxW3UR0BPsL4c8ILaIWXva5kFi7TxkIIaMiKtqV1Q" crossorigin="anonymous">
+
     <!--JS-->
     <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
     <script src="js/main.js"></script>
@@ -13,14 +16,48 @@
 </head>
 <body>
     <header>
-        <!-- Button trigger modal -->
-        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#loginModalCenter">
-            Login
-          </button>
-          <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#signupModalCenter">
-            Signup
-          </button>
+      <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <a class="navbar-brand main-font" href="#">Movie Watchlist</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse w-100 order-3 dual-collapse2" id="navbarNavAltMarkup">
+          <ul class="navbar-nav ml-auto">
+            <!-- Button trigger modal -->
+            <li class="nav-item mr-2">
+              <button type="button" id="login" class="btn btn-primary" data-toggle="modal" data-target="#loginModalCenter">Login</button>
+            </li>
+            <li class="nav-item">
+              <button type="button" id="signup" class="btn btn-primary" data-toggle="modal" data-target="#signupModalCenter">Signup</button>
+            </li>
+          </ul>
+        </div>
+      </nav>
     </header>
+
+    <!--Hero-->
+
+    <div class="jumbotron jumbotron-fluid">
+      <div class="container">
+        <h1 class="display-4 main-font">Movie Watchlist</h1>
+        <p class="lead">Search movies and add them to your watchlist!</p>
+        <hr class="my-4">
+        <div class="form ">
+          <div class="form-group row ">
+              <i class="fas fa-search col-sm-2"></i>
+            
+              <input type="search" class="form-control-lg col-10 main-font " id="search" name="search" placeholder="Movie title..">
+            
+          </div>
+          <input type="button" class="btn btn-lg btn-primary mt-4" value="Search" id="button" onclick="search()">
+
+        </div>
+        
+      </div>
+    </div>
+
+    
+
 
     
   
@@ -144,9 +181,7 @@
 
     <h1>My Movie List</h1> <br />
     
-    <label>Search:</label>
-    <input type="search" id="search" name="search" placeholder="Movie title..">
-    <input type="button" value="Search" id="button" onclick="search()">
+    
 
     <div id="results">
         
