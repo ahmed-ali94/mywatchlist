@@ -1,3 +1,16 @@
+<!DOCTYPE html>
+<html lang="en">
+<?php include("inc/head.inc") ?>
+<body>
+<?php include("inc/header.inc") ?>
+
+<div class="container">
+      <div id="results">
+        <div id="rows" class="row">
+
+        
+    
+
 <?php 
 
 require_once ("sanatise_data.php");
@@ -48,10 +61,14 @@ foreach($json_output->results as $movie)
 {
     if (empty($movie->poster_path) == false) // ignore movies from json array that dont have a poster img
     {
-    echo "<div id='$movie->id' class='Movie'>\n"
-    ."<p> Title : $movie->title </p>\n"
-    ."<img src='http://image.tmdb.org/t/p/w185$movie->poster_path' onmouseover='display_info($movie->id)'><br />\n"
-    ."<div id='info'></div>\n"
+    echo "<div class='col-sm-3 text-center mb-4'>\n"
+    ."<div id='$movie->id'>\n"
+    ."<p class=' russo-one'> $movie->title </p>\n"
+    ."<img class='img-thumbnail' src='http://image.tmdb.org/t/p/w185$movie->poster_path' onhover='display_info($movie->id)'>\n"
+    ."<div id='rating'>\n"
+    ."<p class='russo-one'> $movie->vote_average</p>\n"
+    ."</div>\n"
+    ."</div>\n"
     ."</div>";
     }
     
@@ -61,12 +78,48 @@ foreach($json_output->results as $movie)
 
 $total_pages = $json_output->total_pages;
 
-
-echo "<div>";
-
-for($i = max(1, $cur_page - 5); $i <= min($cur_page + 5, $total_pages); $i++)
+if ($total_pages > 1)
 {
-    echo "<a href='request.php?search=$encode_search&page=$i' >$i</a>";
+
+
+
+
+    echo "<div class='container'>\n"
+    ."<nav  aria-label='Page navigation example'>\n"
+    ."<ul class='pagination justify-content-center'>\n"
+    ."<li class='page-item disabled'>\n"
+    ."<a class='page-link' href='#' tabindex='-1'>Previous</a>\n"
+    . "</li>";
+
+
+        
+
+    for($i = max(1, $cur_page - 5); $i <= min($cur_page + 5, $total_pages); $i++)
+    {
+        echo "<li class='page-item'><a class='page-link' href='request.php?search=$encode_search&page=$i'>$i</a></li>";
+    }
+
+    $next_page = $cur_page + 1;
+
+    if ( $next_page < $i)
+    {
+
+    echo "<a class='page-link' href='request.php?search=$encode_search&page=$next_page'>Next</a>\n"
+    ."</li>\n"
+    ."</ul>\n"
+    ."</nav>\n"
+    ."</div>";
+    }
+
+    else 
+    {
+    echo "</li>\n"
+    ."</ul>\n"
+    ."</nav>\n"
+    ."</div>";
+        
+    }
+
 }
 
 
@@ -86,30 +139,9 @@ else
     echo "<p>Please enter a movie<p>";
 }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 ?>
+</div>
+ </div>
+</div>
+</body>
+</html>
