@@ -22,54 +22,10 @@ function search()
 {
     var search = document.getElementById("search").value;
 
-    xhr.open("GET", "request.php?search=" + encodeURIComponent(search), true);
-
-    xhr.onreadystatechange = function()
-    {
-        if (xhr.readyState == 4 && xhr.status == 200 )
-        {
-            var result = xhr.responseText;
-
-            if (result == "")
-            {
-                document.getElementById("results").innerHTML = "No results";
-            }
-            else
-            {
-                document.getElementById("results").innerHTML = result;
-            }
-
-        }
-
-    }
-
-    xhr.send(null);
+    window.location.href = "request.php?search=" + encodeURIComponent(search);
 }
 
-function clicked_page(page)
-{
-    var search = document.getElementById("search").value;
 
-    
-
-    xhr.open("GET", "request.php?search=" + encodeURIComponent(search) + "&page=" + encodeURIComponent(page), true);
-
-    xhr.onreadystatechange = function()
-    {
-        if (xhr.readyState == 4 && xhr.status == 200 )
-        {
-            var result = xhr.responseText;
-
-            
-                document.getElementById("results").innerHTML = result;
-            
-
-        }
-
-    }
-
-    xhr.send(null);
-}
 
 function display_info(id)
 {
