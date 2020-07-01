@@ -16,8 +16,8 @@
 </head>
 <body>
     <header>
-      <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-        <a class="navbar-brand main-font" href="#">Movie Watchlist</a>
+      <nav class="navbar navbar-expand-lg navbar-dark bg-purple border-bottom border-gold">
+        <a class="navbar-brand main-font" href="home.html">Movie Watchlist</a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
           <span class="navbar-toggler-icon"></span>
         </button>
@@ -25,10 +25,10 @@
           <ul class="navbar-nav ml-auto">
             <!-- Button trigger modal -->
             <li class="nav-item mr-2">
-              <button type="button" id="login" class="btn btn-primary" data-toggle="modal" data-target="#loginModalCenter">Login</button>
+              <button type="button" id="login" class="btn btn-primary text-purple" data-toggle="modal" data-target="#loginModalCenter">Login</button>
             </li>
             <li class="nav-item">
-              <button type="button" id="signup" class="btn btn-primary" data-toggle="modal" data-target="#signupModalCenter">Signup</button>
+              <button type="button" id="signup" class="btn btn-primary text-purple" data-toggle="modal" data-target="#signupModalCenter">Signup</button>
             </li>
           </ul>
         </div>
@@ -46,10 +46,10 @@
           <div class="form-group row ">
               <i class="fas fa-search col-sm-2"></i>
             
-              <input type="search" class="form-control-lg col-10 main-font " id="search" name="search" placeholder="Movie title..">
+              <input type="search" class="form-control-lg col-10 russo-one " id="search" name="search" placeholder="Movie title..">
             
           </div>
-          <input type="button" class="btn btn-lg btn-primary mt-4" value="Search" id="button" onclick="search()">
+          <input type="button" class="btn btn-lg btn-primary text-purple mt-4" value="Search" id="button" onclick="search()">
 
         </div>
         
@@ -67,13 +67,13 @@
   <div class="modal fade" id="loginModalCenter" tabindex="-1" role="dialog" aria-labelledby="loginModalCenterTitle" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered" role="document">
       <div class="modal-content">
-        <div class="modal-header">
+        <div class="modal-header modal-background-purple russo-one">
           <h5 class="modal-title" id="loginModalCenterTitle">Login</h5>
           <button type="button" class="close" data-dismiss="modal" aria-label="Close">
             <span aria-hidden="true">&times;</span>
           </button>
         </div>
-        <div class="modal-body">
+        <div class="modal-body text-purple">
             <form>
                 <div class="form-group">
                   <label for="loginInputEmail1">Email address</label>
@@ -90,8 +90,8 @@
               </form>
               <div id ="login_message"></div>
         </div>
-        <div class="modal-footer">
-          <button type="button" class="btn btn-primary" onclick="login()">Login</button>
+        <div class="modal-footer modal-background-purple russo-one">
+          <button type="button" class="btn btn-primary text-purple" onclick="login()">Login</button>
         </div>
       </div>
     </div>
@@ -99,19 +99,19 @@
 </div>
 
 <!-- Signup-->
-<div class="modal fade" id="signupModalCenter" tabindex="-1" role="dialog" aria-labelledby="signupModalCenterTitle" aria-hidden="true">
+<div class="modal fade " id="signupModalCenter" tabindex="-1" role="dialog" aria-labelledby="signupModalCenterTitle" aria-hidden="true">
   <div class="modal-dialog modal-dialog-centered" role="document">
     <div class="modal-content">
-      <div class="modal-header">
+      <div class="modal-header modal-background-purple russo-one">
         <h5 class="modal-title" id="signupModalCenterTitle">Register</h5>
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
       </div>
-      <div class="modal-body" id="sign_up_body">
+      <div class="modal-body text-purple" id="sign_up_body">
         <form class="needs-validation" novalidate>
           <div class="form-group">
-          <label for="sign_pwd">Username</label>
+          <label for="sign_pwd ">Username</label>
           <label class="sr-only" for="inlineFormInputGroup">Username</label>
           <div class="input-group mb-2">
           <div class="input-group-prepend">
@@ -170,24 +170,27 @@
 
       
       </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-primary" onclick="signup_validation()">Register</button>
+      <div class="modal-footer modal-background-purple">
+        <button type="button" class="btn btn-primary text-purple" onclick="signup_validation()">Register</button>
       </div>
     </div>
   </div>
 </div>
 
-  </div>
+  
+    <div class="container">
+      <div id="results">
+        <div id="rows" class="row">
 
-    <h1>My Movie List</h1> <br />
-    
-    
-
-    <div id="results">
+        </div>
+      
         
 
 
+      </div>
+
     </div>
+    
 
 
 
