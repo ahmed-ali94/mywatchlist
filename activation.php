@@ -1,5 +1,9 @@
+<!DOCTYPE html>
+<html lang="en">
+<?php include("inc/head.inc") ?>
+<body>
+<?php include("inc/header.inc") ?>
 <?php 
-
 require_once "sanatise_data.php";
 require_once "sql_settings.php";
 
@@ -53,8 +57,16 @@ if ( isset($_GET["email"]) && isset($_GET["hash"]) )
             {
                 mysqli_close($conn);
 
-                echo "<p style='color:green;'>Account is now activated!</p>\n"
-                ."<a href='home.html' class='btn btn-primary' data-toggle='modal' data-target='#loginModalCenter'>Login</a>";
+                echo "<div class='container'>\n"
+                ."<div class='alert alert-success' role='alert'>\n"
+                ."<h4 class='alert-heading'>Activated!</h4>\n"
+                ."<p>Your account is now activated! </p>\n"
+                ."<hr>\n"
+                ."<p class='mb-0'>Whenever you need to, be sure to login.</p>\n"
+                ."<a href='#' class='btn btn-primary mt-4' data-toggle='modal' data-target='#loginModalCenter'>Login</a>\n"
+                ."</div>\n"
+                ."</div>";
+                
             }
 
 
@@ -64,7 +76,14 @@ if ( isset($_GET["email"]) && isset($_GET["hash"]) )
         else
         {
             mysqli_close($conn);
-            exit("Could not activate account. It may be already activated");
+            echo "<div class='container'>\n"
+                ."<div class='alert alert-danger' role='alert'>\n"
+                ."<h4 class='alert-heading'>Error!</h4>\n"
+                ."<p>Could not activate account. It might already be activated! </p>\n"
+                ."<hr>\n"
+                ."<a href='home.html' class='btn btn-primary mt-3'>Home</a>\n"
+                ."</div>\n"
+                ."</div>";
             
         }
     }
@@ -80,3 +99,5 @@ else
     header("Location: home.html");
 }
 ?>
+</body>
+</html>
