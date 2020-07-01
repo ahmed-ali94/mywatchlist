@@ -1,8 +1,10 @@
 @import url(https://fonts.googleapis.com/css?family=Libre+Barcode+39+Text);
+@import url(https://fonts.googleapis.com/css?family=Russo+One);
 
 body {
     background-color: #422057ff;
-    color: #fcf951ff;
+    font-family: 'Russo One', sans-serif;
+    color: #fff;
 }
 
 .fa-search{
@@ -17,5 +19,22 @@ body {
     color: #fcf951ff;
     
 
+}
+
+.russo-one
+{
+    font-family: 'Russo One', sans-serif;
+    color: #fcf951ff;
+
+}
+
+.modal-background-purple
+{
+    background-color: #422057ff;
+}
+
+.text-purple
+{
+    color: #422057ff;
 }
 

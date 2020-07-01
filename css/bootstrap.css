@@ -478,8 +478,8 @@ mark,
 
 .img-thumbnail {
   padding: 0.25rem;
-  background-color: #fff;
-  border: 1px solid #dee2e6;
+  background-color: #fcf951ff;
+  border: 1px solid #fcf951ff;
   border-radius: 0.25rem;
   max-width: 100%;
   height: auto;
@@ -6807,6 +6807,10 @@ button.bg-light:focus {
   background-color: #343a40 !important;
 }
 
+.bg-purple {
+ background-color:#422057ff !important;
+}
+
 a.bg-dark:hover, a.bg-dark:focus,
 button.bg-dark:hover,
 button.bg-dark:focus {
@@ -6879,6 +6883,10 @@ button.bg-dark:focus {
 
 .border-warning {
   border-color: #ffc107 !important;
+}
+
+.border-gold {
+  border-color: #fcf951ff !important;
 }
 
 .border-danger {
