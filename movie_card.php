@@ -27,12 +27,17 @@ curl_close($ch);
 
 // display the info
 
-echo "<div>\n"
-. "<h4>$json_output->title</h4>\n" // title
-."<img src='http://image.tmdb.org/t/p/w185$json_output->backdrop_path' >\n" // poster
-."<div>\n" // the div for the movie info next to the poster
-."<h5>Synopsis</h5>\n" // synopsis
-."<p> $json_output->overview</p>";
+echo "<div class='card mb-3'>\n"
+."<img class='card-img-top' src='http://image.tmdb.org/t/p/w185$json_output->backdrop_path' alt='Card image cap'>\n"
+."<div class='card-body'>\n"
+."<h5 class='card-title'>$json_output->title</h5>\n"
+."<p class='card-text'>$json_output->overview</p>\n"
+."<p class='card-text'><small class='text-muted'>Last updated 3 mins ago</small></p>\n"
+."</div>\n"
+."</div>";
+
+
+
 
 if (empty($json_output->genres) == false) // if genre array exists display all genres
 {

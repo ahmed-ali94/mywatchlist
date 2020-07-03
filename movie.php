@@ -1,10 +1,11 @@
+
 <?php
 require_once ("sanatise_data.php");
 
-if (isset($_GET["movie"]) ) // checks if we have got the movie id form the url
+if (isset($_GET["id"]) ) // checks if we have got the movie id form the url
 {
 
-$id =  sanatise_input($_GET["movie"]); // sanatise the input
+$id =  sanatise_input($_GET["id"]); // sanatise the input
 
 if (!preg_match("/^[0-9]{1,6}$/", $id)) // if the id does not match 6 digits
 {
@@ -18,7 +19,7 @@ $encode_id = urlencode($id);
 // Request movie  with TMDB using cURL
 
 
-$url = "https://api.themoviedb.org/3/movie/$encode_id?api_key=c2293950755394e5c99ca7f387cb2c2d"; 
+$url = "https://api.themoviedb.org/3/movie/$encode_id?api_key=c2293950755394e5c99ca7f387cb2c2d&append_to_response=videos,images"; 
 
 $ch = curl_init($url);
 
@@ -44,12 +45,9 @@ else // if no user id was in the url then relocate user back to home page.
 ?>
 <!DOCTYPE html>
 <html  lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title><?php echo $json_output->title; ?></title>
-</head>
+<?php include("inc/head.inc") ?>
 <body>
+<?php include("inc/header.inc") ?>
 <?php
 
 // details
@@ -57,8 +55,23 @@ else // if no user id was in the url then relocate user back to home page.
 echo "<div>\n"
 . "<h4>$json_output->title</h4>\n" // title
 ."<img src='http://image.tmdb.org/t/p/w185$json_output->poster_path' >\n" // poster
-."<div>\n" // the div for the movie info next to the poster
-."<h5>Synopsis</h5>\n" // synopsis
+."<div>"; // the div for the movie info next to the poster
+
+// add trailers
+
+if (empty($json_output->videos) == false) // if video array exists display  trailer
+{
+    $key = $json_output->videos->results[0]->key;
+    
+        echo "<iframe width='800' height='720'src='https://www.youtube.com/embed/$key'></iframe>";
+    
+    
+
+}
+
+
+
+echo "<h5>Synopsis</h5>\n" // synopsis
 ."<p> $json_output->overview</p>";
 
 

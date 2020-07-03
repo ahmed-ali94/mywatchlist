@@ -27,22 +27,9 @@ function search()
 
 
 
-function display_info(id)
+function movie_info(id)
 {
-    xhr.open("GET","modal_info.php?id=" + encodeURIComponent(id), true);
-
-    xhr.onreadystatechange = function() 
-    {
-        if (xhr.readyState == 4 && xhr.status == 200)
-        {
-            var result = xhr.responseText;
-
-            document.getElementById("info").innerHTML = result;
-
-        }
-    }
-
-    xhr.send(null);
+    window.location.href = "movie.php?id=" + encodeURIComponent(id);
     
 }
 

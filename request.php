@@ -64,9 +64,43 @@ foreach($json_output->results as $movie)
     echo "<div class='col-sm-3 text-center mb-4'>\n"
     ."<div id='$movie->id'>\n"
     ."<p class=' russo-one'> $movie->title </p>\n"
-    ."<img class='img-thumbnail' src='http://image.tmdb.org/t/p/w185$movie->poster_path' onhover='display_info($movie->id)'>\n"
-    ."<div id='rating'>\n"
-    ."<p class='russo-one'> $movie->vote_average</p>\n"
+    ."<div class='img-container'>\n"
+    ."<img class='img-thumbnail' src='http://image.tmdb.org/t/p/w185$movie->poster_path' data-toggle='modal' data-target='#movie_info'>\n"
+    ."<div class='overlay'>\n"
+    ."<span>\n"
+    ."<p>Rating:<br /> $movie->vote_average / 10</p>";    // overlay content 
+
+    if ($movie->vote_average >= 9 && $movie->vote_average <= 9.9 )  // adding emojis based on movie rating
+    {
+        echo "<i class='fas fa-grin-stars'></i>";
+    }
+    
+    if ($movie->vote_average >= 8 && $movie->vote_average <= 8.9 )  
+    {
+        echo "<i class='fas fa-grin-hearts'></i>";
+    }
+
+    if ($movie->vote_average >= 7 && $movie->vote_average <=7.9 )
+    {
+        echo "<i class='fas fa-grin'></i>";
+    }
+
+    if ($movie->vote_average >= 6 && $movie->vote_average <=6.9 )
+    {
+        echo "<i class='fas fa-meh'></i>";
+    }
+
+    if ($movie->vote_average < 6 )
+    {
+        echo "<i class='fas fa-flushed'></i>";
+    }
+
+
+
+    echo "<button type='button' id='movie_details' class='btn btn-info text-purple' onclick='movie_info($movie->id)'>Details</button>\n"
+    ."<button type='button' id='add_movie' class='btn btn-success btn-sm mt-4 text-purple'>Add</button>\n"
+    ."</span>\n"
+    ."</div>\n"
     ."</div>\n"
     ."</div>\n"
     ."</div>";
@@ -143,5 +177,8 @@ else
 </div>
  </div>
 </div>
+
+
 </body>
+
 </html>
