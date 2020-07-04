@@ -13,6 +13,21 @@ body {
     opacity: 0.7;
 }
 
+.fa-imdb {
+
+    color: #fcf951ff;
+    font-size: 50px;
+    opacity: 0.7;
+
+
+}
+
+.fa-imdb:hover {
+    cursor: pointer;
+    color: black;
+
+}
+
 .main-font
 {
     font-family: 'Libre Barcode 39 Text', cursive;
@@ -63,5 +78,9 @@ body {
     transform:translate(-50%,-50%);
     color:#422057ff;
     opacity: 1;
+  }
+
+  .hr {
+    background-color: #fcf951ff ;
   }
 

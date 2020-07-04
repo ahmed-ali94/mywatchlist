@@ -64,6 +64,7 @@ foreach($json_output->results as $movie)
     echo "<div class='col-sm-3 text-center mb-4'>\n"
     ."<div id='$movie->id'>\n"
     ."<p class=' russo-one'> $movie->title </p>\n"
+    ."<a href='movie.php?id=$movie->id'>\n"
     ."<div class='img-container'>\n"
     ."<img class='img-thumbnail' src='http://image.tmdb.org/t/p/w185$movie->poster_path' data-toggle='modal' data-target='#movie_info'>\n"
     ."<div class='overlay'>\n"
@@ -103,6 +104,7 @@ foreach($json_output->results as $movie)
     ."</div>\n"
     ."</div>\n"
     ."</div>\n"
+    ."</a>\n"
     ."</div>";
     }
     

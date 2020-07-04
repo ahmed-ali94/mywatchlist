@@ -47,41 +47,39 @@ else // if no user id was in the url then relocate user back to home page.
 <html  lang="en">
 <?php include("inc/head.inc") ?>
 <body>
+<script> $(document).ready(function() {
+    $('.jumbotron').css('background-image','linear-gradient(0deg, rgba(123,34,195,.5) 0%, rgba(253,187,45,.5) 100%),url(<?php 
+
+    $background_image = $json_output->images->backdrops[0]->file_path;
+
+    echo "http://image.tmdb.org/t/p/original/$background_image";
+    
+    
+    
+    
+    ?>)');
+
+}); </script>
 <?php include("inc/header.inc") ?>
-<?php
-
-// details
-
-echo "<div>\n"
-. "<h4>$json_output->title</h4>\n" // title
-."<img src='http://image.tmdb.org/t/p/w185$json_output->poster_path' >\n" // poster
-."<div>"; // the div for the movie info next to the poster
-
-// add trailers
-
-if (empty($json_output->videos) == false) // if video array exists display  trailer
-{
-    $key = $json_output->videos->results[0]->key;
-    
-        echo "<iframe width='800' height='720'src='https://www.youtube.com/embed/$key'></iframe>";
-    
-    
-
-}
 
 
-
-echo "<h5>Synopsis</h5>\n" // synopsis
-."<p> $json_output->overview</p>";
-
-
+<div class="container-fluid">
+<div class="row">
+<div class="col-sm-4 d-flex justify-content-end">
+<img class="rounded-lg rounded-bottom border border-warning" src='http://image.tmdb.org/t/p/w342/<?php echo $json_output->poster_path ?>'>
+</div>
+<div class="col-sm-4 text-center">
+<h5 class="display-4"><?php echo $json_output->title  ?></h5>
+<p class="mt-4"><?php  
+echo "$json_output->release_date\n"
+."| ";
+// add genres
 if (empty($json_output->genres) == false) // if genre array exists display all genres
 {
     $lastgenre = end($json_output->genres);
     
 
-    echo "<h5>Genre</h5>\n" // genre"
-    ."<p>";
+    
 
     foreach($json_output->genres as $genre) // display all genres
     {
@@ -94,59 +92,54 @@ if (empty($json_output->genres) == false) // if genre array exists display all g
     
     if ($genre == $lastgenre) // need to find the last genre to put a . rather than ,
     {
-        echo "$genre->name.";
+        echo "$genre->name | ";
     }
 
     }
 
-    echo "</p>";
-
-
+    // add runtime
+    $runtime = floor($json_output->runtime/60);
+    $minutes = $json_output->runtime % 60;
+    echo "$runtime Hr & $minutes Minutes";
 }
+?></p>
 
-echo "<h5>Release Date</h5>\n" // Release date
-."<p> $json_output->release_date</p>\n"
-."<h5>Language</h5>\n" // Language
-."<p> $json_output->original_language</p>\n"
-."<h5>Popularity</h5>\n" // Popularity
-."<p> $json_output->popularity</p>";
+<hr class="hr " />
+<div class="container">
+<div class="d-flex ">
+<div class="p-2 mr-auto">
+<h4 class="h4 text-left"> Overview</h4>
+</div>
+<div class="p-2 ">
+<a href="https://www.imdb.com/title/<?php echo $json_output->imdb_id; ?>"><i class="fab fa-imdb"></i></a>
+</div>
+<div class="p-2 my-auto ">
+<p class="russo-one pt-2"><?php echo "$json_output->vote_average / 10"; ?></p>
+</div>
+</div>
+</div>
 
+<p class="text-left lead mt-4"> <?php  echo $json_output->overview ?> </p>
+</div>
+<div class="col-4">
+<div class="embed-responsive embed-responsive-16by9 ">
+<iframe class="embed-responsive-item  " src='https://www.youtube.com/embed/<?php  
 
-if (empty($json_output->imdb_id) == false) // check for imdb id
+// add trailers
+
+if (empty($json_output->videos) == false) // if video array exists display  trailer
 {
-    echo "<h5>IMDB</h5>\n" // IMDB
-    ."<a href='https://www.imdb.com/title/$json_output->imdb_id'>IMDB</a>\n"
-    ."<h5>Rating</h5>\n"
-    ."<p>$json_output->vote_average</p>\n"
-    ."<h5>Voters</h5>\n"
-    ."<p>$json_output->vote_count</p>";
+    $key = $json_output->videos->results[0]->key;
     
+        echo $key;
+    
+
 }
 
-
-
-
-echo "</div>\n"
-."</div>";
-
-
-
-?>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-    
+?>'allowfullscreen></iframe>
+</div>
+</div>
+</div>
+</div>   
 </body>
 </html>
