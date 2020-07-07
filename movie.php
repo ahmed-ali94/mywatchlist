@@ -19,7 +19,7 @@ $encode_id = urlencode($id);
 // Request movie  with TMDB using cURL
 
 
-$url = "https://api.themoviedb.org/3/movie/$encode_id?api_key=c2293950755394e5c99ca7f387cb2c2d&append_to_response=videos,images"; 
+$url = "https://api.themoviedb.org/3/movie/$encode_id?api_key=c2293950755394e5c99ca7f387cb2c2d&append_to_response=videos,images,credits"; 
 
 $ch = curl_init($url);
 
@@ -59,20 +59,25 @@ else // if no user id was in the url then relocate user back to home page.
     
     ?>)');
 
+
 }); </script>
 <?php include("inc/header.inc") ?>
 
 
-<div class="container-fluid">
+<div class="container-fluid mt-4">
 <div class="row">
 <div class="col-sm-4 d-flex justify-content-end">
 <img class="rounded-lg rounded-bottom border border-warning" src='http://image.tmdb.org/t/p/w342/<?php echo $json_output->poster_path ?>'>
+
 </div>
 <div class="col-sm-4 text-center">
+
+
 <h5 class="display-4"><?php echo $json_output->title  ?></h5>
+
 <p class="mt-4"><?php  
 echo "$json_output->release_date\n"
-."| ";
+."<sep>|</sep> ";
 // add genres
 if (empty($json_output->genres) == false) // if genre array exists display all genres
 {
@@ -92,7 +97,7 @@ if (empty($json_output->genres) == false) // if genre array exists display all g
     
     if ($genre == $lastgenre) // need to find the last genre to put a . rather than ,
     {
-        echo "$genre->name | ";
+        echo "$genre->name <sep>|</sep> ";
     }
 
     }
@@ -119,7 +124,9 @@ if (empty($json_output->genres) == false) // if genre array exists display all g
 </div>
 </div>
 
-<p class="text-left lead mt-4"> <?php  echo $json_output->overview ?> </p>
+
+
+<p class="text-left text-wrap lead mt-4"> <?php  echo $json_output->overview ?> </p>
 </div>
 <div class="col-4">
 <div class="embed-responsive embed-responsive-16by9 ">
@@ -140,6 +147,216 @@ if (empty($json_output->videos) == false) // if video array exists display  trai
 </div>
 </div>
 </div>
-</div>   
+</div>
+
+<div class="container-fluid mt-4">
+    <div class="row ">
+        <div class="col mr-0">
+
+            <div class="card text-center bg-dark">
+                <div class="card-header">
+                    <ul class="nav nav-tabs card-header-tabs">
+                    <li class="nav-item">
+                        <a class="nav-link active" href="#credits">Credits</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Box Office</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link disabled" href="#">Tech Specs</a>
+                    </li>
+                    </ul>
+                </div>
+                <div id="credits" class="card-body text-left">
+                    <h5 class="card-title text-center">Credits</h5>
+                    <hr class="hr w-25">
+                    <div id="directors">
+                    <h6 class='text-left russo-one'>Directors</h6>
+                        
+                        <?php
+
+                        foreach ($json_output->credits->crew as $crew)
+                        {
+                            if ($crew->job == "Director")
+                            {
+                                if (empty($crew->profile_path) == false ) // if there is a profile image
+                                {
+
+                                echo "<img class='border rounded-circle'  src='http://image.tmdb.org/t/p/w45/$crew->profile_path'>\n"
+                                ." <sep>|</sep> $crew->name<br/><br/>";
+                                }
+
+                                else
+                                {
+                                    echo "<div class='d-flex '><i  class='fas fa-user-circle'></i>\n"
+                                    ."<div class='ml-1 mt-3'><sep>|</sep> $crew->name</div></div><br/><br/>";
+                                }
+
+                            }
+                        }
+                        
+                        
+                        ?>
+                        
+                    
+                    </div>
+
+                    <div id="producers">
+
+                    <h6 class='text-left russo-one'>Executive Producers</h6>
+
+                    <?php
+
+                        foreach ($json_output->credits->crew as $crew)
+                        {
+
+                            if ($crew->job == "Executive Producer")
+                            {
+                                if (empty($crew->profile_path) == false ) // if there is a profile image
+                                {
+
+                                echo "<img class='border rounded-circle'  src='http://image.tmdb.org/t/p/w45/$crew->profile_path'>\n"
+                                ." <sep>|</sep> $crew->name<br/><br/>";
+                                }
+
+                                else
+                                {
+                                    echo "<div class='d-flex '><i  class='fas fa-user-circle'></i>\n"
+                                    ."<div class='ml-1 mt-3'><sep>|</sep> $crew->name</div></div><br/><br/>";
+                                }
+                            }
+                        }
+
+                    ?>
+
+
+                    </div>
+
+                    <div id="writers">
+
+                    <h6 class='text-left russo-one'>Screenplay</h6>
+
+                    <?php
+
+                        foreach ($json_output->credits->crew as $crew)
+                        {
+
+                            if ($crew->job == "Screenplay")
+                            {
+                                if (empty($crew->profile_path) == false ) // if there is a profile image
+                                {
+
+                                echo "<img class='border rounded-circle'  src='http://image.tmdb.org/t/p/w45/$crew->profile_path'>\n"
+                                ." <sep>|</sep> $crew->name<br/><br/>";
+                                }
+
+                                else
+                                {
+                                    echo "<div class='d-flex '><i  class='fas fa-user-circle'></i>\n"
+                                    ."<div class='ml-1 mt-3'><sep>|</sep> $crew->name</div></div><br/><br/>";
+                                }
+                            }
+                        }
+
+                    ?>
+
+
+                    </div>
+
+                    <div id="composer">
+
+                    <h6 class='text-left russo-one'>Composer</h6>
+
+                    <?php
+
+                        foreach ($json_output->credits->crew as $crew)
+                        {
+
+                            if ($crew->job == "Original Music Composer")
+                            {
+                                if (empty($crew->profile_path) == false ) // if there is a profile image
+                                {
+
+                                echo "<img class='border rounded-circle'  src='http://image.tmdb.org/t/p/w45/$crew->profile_path'>\n"
+                                ." <sep>|</sep> $crew->name<br/><br/>";
+                                }
+
+                                else
+                                {
+                                    echo "<div class='d-flex '><i  class='fas fa-user-circle'></i>\n"
+                                    ."<div class='ml-1 mt-3'><sep>|</sep> $crew->name</div></div><br/><br/>";
+                                }
+                            }
+                        }
+
+                    ?>
+
+
+                    </div>
+
+
+                    
+
+
+
+
+                </div>
+            </div>
+
+        </div>
+        <div class="col-sm-6 mr-0">
+
+            <div id="movie_images" class="carousel slide shadow-lg w-50" data-ride="carousel">
+                <ol class="carousel-indicators">
+
+                <?php
+
+                $length = count($json_output->images->backdrops);
+
+                if ($length > 6)
+                {
+                    $length = 6;
+                }
+
+                for ( $i = 0; $i < $length; $i++)
+                {
+                    echo "<li data-target='#movie_images' data-slide-to='$i' class='active'></li>";
+                }
+                ?>
+                </ol>
+            <div class="carousel-inner ">
+            <div class='carousel-item active'>
+                <img class="d-block w-100 img-fluid" src="http://image.tmdb.org/t/p/w780/<?php echo $json_output->images->backdrops[0]->file_path; ?>">
+                </div>
+
+                <?php
+
+                $length = count($json_output->images->backdrops);
+
+                if ($length > 6)
+                {
+                $length = 6;
+                }
+
+                for ( $i = 1; $i < $length; $i++)
+                {
+                echo "<div class='carousel-item '>\n"
+                ."<img class='d-block w-100 img-fluid' src='http://image.tmdb.org/t/p/w780//" .$json_output->images->backdrops[$i]->file_path. "'></div>";
+                }
+
+            ?>
+            <a class="carousel-control-prev" href="#movie_images" role="button" data-slide="prev">
+                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                <span class="sr-only">Previous</span>
+            </a>
+            <a class="carousel-control-next" href="#movie_images" role="button" data-slide="next">
+                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                <span class="sr-only">Next</span>
+            </a>
+            </div>
+        </div>
+</div>
+</div>
+
 </body>
 </html>

@@ -28,6 +28,11 @@ body {
 
 }
 
+.fa-user-circle
+{
+    font-size: 50px;
+}
+
 .main-font
 {
     font-family: 'Libre Barcode 39 Text', cursive;
@@ -83,4 +88,23 @@ body {
   .hr {
     background-color: #fcf951ff ;
   }
+
+sep {
+    color:  #fcf951ff ;
+}
+
+.vr{
+    width : 1px ;
+height : 100px ;
+border-left: 6px solid #fcf951ff;
+
+
+
+
+}
+
+
+
+
+
 
