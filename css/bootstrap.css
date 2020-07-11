@@ -5273,7 +5273,7 @@ a.badge-dark:focus, a.badge-dark.focus {
 .jumbotron {
   padding: 2rem 1rem;
   margin-bottom: 2rem;
-  background-image: linear-gradient(rgba(0, 0, 0, 0.5),rgba(0, 0, 0, 0.5)), url('../img/hero_1.jpg');
+  background-image: linear-gradient(0deg, rgba(253,187,45,0.4) 0%, rgba(87,97,107,0.4) 91%), url('../img/hero_1.jpg');
   background-size: cover;
   background-repeat: no-repeat;
   border-radius: 0.3rem;
@@ -6463,7 +6463,7 @@ a.close.disabled {
   display: none;
   float: left;
   width: 100%;
-  height: 500px;
+  height: 720px;
   margin-right: -100%;
   -webkit-backface-visibility: hidden;
   backface-visibility: hidden;
@@ -6473,7 +6473,7 @@ a.close.disabled {
 }
 
 .carousel-item img {
-  height: 500px;
+  height: 720px;
 }
 
 @media (prefers-reduced-motion: reduce) {
