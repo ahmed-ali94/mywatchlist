@@ -96,7 +96,7 @@ if ( isset($_GET["email"]) && isset($_GET["hash"]) )
 
 else
 {
-    header("Location: home.html");
+    header("Location: home.php");
 }
 ?>
 </body>

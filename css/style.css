@@ -7,6 +7,8 @@ body {
     color: #fff;
 }
 
+
+
 .fa-search{
     color: #fcf951ff;
     font-size: 35px;
@@ -121,6 +123,21 @@ dt{
     opacity: 0.8;
 
 }
+.fa-times-circle
+{
+    color: white ;
+    font-size: 18px;
+
+}
+
+.fa-times-circle:hover
+{
+    opacity: 0.5;
+    cursor: pointer;
+}
+
+
+
 
 
 

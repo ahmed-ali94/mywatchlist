@@ -1,51 +1,43 @@
 <header>
       <nav class="navbar navbar-expand-lg navbar-dark bg-dark border-bottom border-gold">
-        <a class="navbar-brand main-font" href="home.html">Movie Watchlist</a>
+        <a class="navbar-brand main-font" href="home.php">Movie Watchlist</a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
           <span class="navbar-toggler-icon"></span>
         </button>
-        <div class="collapse navbar-collapse w-100 order-3 dual-collapse2" id="navbarNavAltMarkup">
+        <div class="collapse navbar-collapse order-3 dual-collapse2" id="navbarNavAltMarkup">
           <ul class="navbar-nav ml-auto">
             <!-- Button trigger modal -->
-            <li class="nav-item mr-2">
-              <button type="button" id="login" class="btn btn-primary text-purple" data-toggle="modal" data-target="#loginModalCenter">Login</button>
+            <li class="nav-item  mr-5  ">
+            <div class="form-inline ">
+              <input class="form-control mr-sm-2" id="search" name="search" placeholder="Search">
+              <input type="button" class="btn btn-outline-light my-2 my-sm-0" value="Search" id="button" onclick="search()">
+          </div>
             </li>
-            <li class="nav-item">
-              <button type="button" id="signup" class="btn btn-primary text-purple" data-toggle="modal" data-target="#signupModalCenter">Signup</button>
-            </li>
+            <?php
+            if (isset($_SESSION["user_Id"]))
+            {
+              echo "<li class='nav-item mr-2'>\n"
+              ."<a href='movielist.php' id='movielist_button' class='btn btn-primary text-purple'>Watch List</a>\n"
+              ."</li>\n"
+              ."<li class='nav-item mr-2'>\n"
+              ."<button type='button' id='logout' class='btn btn-primary text-purple' onclick='logout()'>Logout</button>\n"
+              ."</li>";
+            }
+            else
+            {
+              echo  "<li class='nav-item mr-2'>\n"
+                    ."<button type='button' id='login' class='btn btn-primary text-purple' data-toggle='modal' data-target='#loginModalCenter'>Login</button>\n"
+                    ."</li>\n"
+                    ."<li class='nav-item'>\n"
+                    ."<button type='button' id='signup' class='btn btn-primary text-purple' data-toggle='modal' data-target='#signupModalCenter'>Signup</button>\n"
+                    ."</li>";
+            }
+            ?>
           </ul>
         </div>
       </nav>
     </header>
-
-    <!--Hero-->
-
-    <div class="jumbotron jumbotron-fluid mb-0">
-      <div class="container">
-        <h1 class="display-4 main-font">Movie Watchlist</h1>
-        <p class="lead">Search movies and add them to your watchlist!</p>
-        <hr class="my-4">
-        <div class="form ">
-          <div class="form-group row ">
-              <i class="fas fa-search col-sm-2"></i>
-            
-              <input type="search" class="form-control-lg col-10 russo-one " id="search" name="search" placeholder="Movie title..">
-            
-          </div>
-          <input type="button" class="btn btn-lg btn-primary text-purple mt-4" value="Search" id="button" onclick="search()">
-
-        </div>
-        
-      </div>
-    </div>
-
-    
-
-
-    
-  
-  <!-- Modal -->
-
+<!-- Modal -->
   <!--Login-->
   <div class="modal fade" id="loginModalCenter" tabindex="-1" role="dialog" aria-labelledby="loginModalCenterTitle" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered" role="document">
@@ -56,7 +48,7 @@
             <span aria-hidden="true">&times;</span>
           </button>
         </div>
-        <div class="modal-body text-purple">
+        <div id="login_modal_body" class="modal-body text-purple">
             <form>
                 <div class="form-group">
                   <label for="loginInputEmail1">Email address</label>

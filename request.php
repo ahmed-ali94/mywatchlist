@@ -1,3 +1,4 @@
+<?php session_start(); ?>
 <!DOCTYPE html>
 <html lang="en">
 <?php include("inc/head.inc") ?>
@@ -99,8 +100,9 @@ foreach($json_output->results as $movie)
 
 
     echo "<button type='button' id='movie_details' class='btn btn-info text-purple' onclick='movie_info($movie->id)'>Details</button>\n"
-    ."<button type='button' id='add_movie' class='btn btn-success btn-sm mt-4 text-purple'>Add</button>\n"
+    ."<button type='button' id='add_movie' class='btn btn-success btn-sm mt-4 text-purple' onclick='add_movie($movie->id)'>Add</button>\n"
     ."</span>\n"
+    ."<span id='response'> </span>\n"
     ."</div>\n"
     ."</div>\n"
     ."</div>\n"

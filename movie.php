@@ -1,4 +1,4 @@
-
+<?php session_start(); ?>
 <?php
 require_once ("sanatise_data.php");
 
@@ -47,31 +47,16 @@ else // if no user id was in the url then relocate user back to home page.
 <html  lang="en">
 <?php include("inc/head.inc") ?>
 <body>
-<script> $(document).ready(function() {
-    $('.jumbotron').css('background-image','linear-gradient(0deg, rgba(253,187,45,0.4) 0%, rgba(87,97,107,0.4) 91%),url(<?php 
-
-    $background_image = $json_output->images->backdrops[0]->file_path;
-
-    echo "http://image.tmdb.org/t/p/original/$background_image";
-    
-    
-    
-    
-    ?>)');
-
-
-}); </script>
 <?php include("inc/header.inc") ?>
-
 
 <div class="container-fluid pl-0">
 <div class="row">
 
 <div class="col-sm-8 ">
 
-<div class="card mb-3 bg-dark ">
+<div class="card bg-dark ">
 
-    <div id="movie_images" class="carousel slide shadow-lg border-bottom border-gold" data-ride="carousel">
+    <div id="movie_images" class="carousel slide shadow-lg" data-ride="carousel">
                 <ol class="carousel-indicators">
 
                 <?php
@@ -164,6 +149,8 @@ if (empty($json_output->genres) == false) // if genre array exists display all g
 <div class="p-2 mr-auto">
 <h4 class="h4 text-left"> Overview</h4>
 </div>
+<button type='button' id='add_movie' class='btn btn-success btn-sm mt-4 text-purple' onclick='add_movie(<?php echo $json_output->id ?>)'>Add</button>
+<span id="response"></span>
 <div class="p-2 ">
 <a href="https://www.imdb.com/title/<?php echo $json_output->imdb_id; ?>"><i class="fab fa-imdb"></i></a>
 </div>

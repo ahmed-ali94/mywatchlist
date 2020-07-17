@@ -82,7 +82,7 @@ if ( isset($_POST["email"]) && !empty($_POST["email"]) AND isset($_POST["pwd"]) 
 
                 // The query to auth login
 
-                $query = "SELECT Email, Pwd, Active, Username FROM $table WHERE Email='$email' AND Pwd='$password' AND Active='1'";
+                $query = "SELECT * FROM $table WHERE Email='$email' AND Pwd='$password' AND Active='1'";
 
                 $result = mysqli_query($conn,$query);
 
@@ -99,7 +99,7 @@ if ( isset($_POST["email"]) && !empty($_POST["email"]) AND isset($_POST["pwd"]) 
                     {
                         // Create a session after user has logged in. 
                         $userinfo = mysqli_fetch_assoc($result);
-                        $_SESSION["Username"] = $userinfo["Username"];
+                        $_SESSION["user_Id"] = $userinfo["user_Id"];
 
                         // free the memory assocaited with the login result
                         mysqli_free_result($result);
@@ -126,7 +126,7 @@ if ( isset($_POST["email"]) && !empty($_POST["email"]) AND isset($_POST["pwd"]) 
 
 else
 {
-    header("Location: home.html");
+    header("Location: home.php");
 }
 
 

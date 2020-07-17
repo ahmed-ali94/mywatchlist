@@ -22,20 +22,147 @@ function search()
 {
     var search = document.getElementById("search").value;
 
-    window.location.href = "request.php?search=" + encodeURIComponent(search);
-}
+    if (search == "")
+    {
+        var searchbar = document.getElementById("search");
 
+        document.querySelector("search").style.border = "2px solid red";
+    }
 
+    else
+    {
+        window.location.href = "request.php?search=" + encodeURIComponent(search);
 
-function movie_info(id)
-{
-    window.location.href = "movie.php?id=" + encodeURIComponent(id);
+    }
+
     
 }
 
+
+
+function add_movie(id)
+{
+    xhr.open("GET","add_movie.php?id=" + encodeURIComponent(id), true);
+        
+
+
+        xhr.onreadystatechange = function() 
+        {
+            if (xhr.readyState == 4 && xhr.status == 200)
+            {
+                var result = xhr.responseText;
+
+                if (result == "404")
+                {
+                    $('#loginModalCenter').modal();
+
+                }
+        
+
+                else
+                {
+                    document.getElementById("response").innerHTML = result;
+
+                    $("#response").fadeIn(3000);
+                    $("#response").fadeOut(3000);
+
+
+                }
+               
+                    
+
+            
+
+            }
+        }
+
+        xhr.send(null);
+    
+}
+
+
+function add_list()
+{
+    var title = document.getElementById("list_title").value;
+    var description = document.getElementById("list_description").value;
+
+    var errMsg = "";
+
+    if (title == "")
+    {
+        errMsg = "<p style='color:red;'>Please enter the list title.</p>";
+        document.getElementById("list_title_msg").innerHTML = errMsg;
+    }
+
+    else if(title.match(/^[a-zA-Z0-9 ]{0,50}$/) == null) // Matches Alphanumeric characters with space alone.
+    {
+        errMsg = "<ul style='color:red;'><li>Only numbers and letters allowed, no special characters.</li><li>Max 50 characters allowed.</li></ul>";
+        document.getElementById("list_title_msg").innerHTML = errMsg;
+
+    }
+    else
+    {
+        document.getElementById("list_title_msg").innerHTML = "";
+    }
+
+    if (description == "")
+    {
+        errMsg = "<p style='color:red;'>Please enter a description.</p>";
+        document.getElementById("list_description_msg").innerHTML = errMsg;
+
+    }
+    else if (description.match(/^[a-zA-Z0-9 ]{0,250}$/) == null) // Matches Alphanumeric characters with space alone.
+    {
+        errMsg = "<ul style='color:red;'><li>Only numbers and letters allowed, no special characters.</li><li>Max 250 characters allowed.</li></ul>";
+        document.getElementById("list_description_msg").innerHTML = errMsg;
+
+    }
+
+    else
+    {
+        document.getElementById("list_description_msg").innerHTML = "";
+
+
+    }
+
+    if (errMsg == "")
+    {
+        xhr.open("POST","add_list.php", true);
+        xhr.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+        xhr.send("title=" + encodeURIComponent(title) + "&desc=" + encodeURIComponent(description));
+        xhr.onreadystatechange = function() 
+        {
+            if (xhr.readyState == 4 && xhr.status == 200)
+            {
+                var result = xhr.responseText;
+
+                if (result == "Added")
+                {
+                    $("#addlistModalCenter").modal("hide");
+                    location.reload();
+                }
+                else
+                {
+                    document.getElementById("addlist_server_response").innerHTML = result;
+                }
+               
+                
+            }
+        }
+
+    }
+
+
+    
+
+}
+
+
+
+
 function login()
 {
-    // validate logn input
+    // validate login input
 
     var email = document.getElementById("login_email").value;
     var pwd = document.getElementById("login_password").value;
@@ -88,6 +215,10 @@ function login()
                 {
                     // change header links 
 
+                    $("#loginModalCenter").modal("hide");
+                    location.reload();
+
+
                     
 
 
@@ -104,6 +235,32 @@ function login()
         }
 
 }
+
+
+function logout()
+{
+    xhr.open("GET","logout.php", true);
+        
+        xhr.onreadystatechange = function() 
+        {
+            if (xhr.readyState == 4 && xhr.status == 200)
+            {
+                var result = xhr.responseText;
+
+                if (result == 200)
+                {
+                    location.reload();
+                }
+
+            }
+        }
+
+        xhr.send(null);
+
+}
+
+
+
 
 function signup_validation()
 {
