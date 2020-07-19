@@ -16,12 +16,17 @@
             <?php
             if (isset($_SESSION["user_Id"]))
             {
-              echo "<li class='nav-item mr-2'>\n"
-              ."<a href='movielist.php' id='movielist_button' class='btn btn-primary text-purple'>Watch List</a>\n"
-              ."</li>\n"
-              ."<li class='nav-item mr-2'>\n"
-              ."<button type='button' id='logout' class='btn btn-primary text-purple' onclick='logout()'>Logout</button>\n"
-              ."</li>";
+              echo "<div class='btn-group mr-3'>\n"
+              ."<button type='button' class='btn btn-warning'>".$_SESSION["Username"]."</button>\n"
+              ."<button type='button' class='btn btn-warning dropdown-toggle dropdown-toggle-split' data-toggle='dropdown' aria-haspopup='true' aria-expanded='false'>\n"
+              ."<span class='sr-only'>Toggle Dropdown</span>\n"
+              ."</button>\n"
+              ."<div class='dropdown-menu'>\n"
+              ."<a href='movielist.php' id='movielist_button' class='btn btn-primary dropdown-item'>Watch List</a>\n"
+              ."<div class='dropdown-divider'></div>\n"
+              ."<button type='button' id='logout' class='btn btn-primary dropdown-item' onclick='logout()'>Logout</button>\n"
+              ."</div>\n"
+              ."</div>";
             }
             else
             {

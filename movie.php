@@ -147,9 +147,82 @@ if (empty($json_output->genres) == false) // if genre array exists display all g
 <div class="container">
 <div class="d-flex ">
 <div class="p-2 mr-auto">
-<h4 class="h4 text-left"> Overview</h4>
+<h4 class="h4 text-left russo-one"> Overview</h4>
 </div>
-<button type='button' id='add_movie' class='btn btn-success btn-sm mt-4 text-purple' onclick='add_movie(<?php echo $json_output->id ?>)'>Add</button>
+<div class="btn-group btn-group-sm mr-4 dropup">
+  <button type="button" class="btn  btn-light">Add</button>
+  <button type="button" class="btn btn-outline-warning dropdown-toggle dropdown-toggle-split" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+    <span class="sr-only">Toggle Dropdown</span>
+  </button>
+  <div class="dropdown-menu bg-dark">
+  <?php
+    // list users movie list in the drop down menu
+    if (isset($_SESSION["user_Id"]))
+    {
+        $user_id = $_SESSION["user_Id"];
+        require_once "sql_settings.php";
+
+        $conn = mysqli_connect($host,$user,$pwd,$sql_db);
+
+        if (!$conn)
+        {
+            exit("Database connection error");
+
+        }
+
+        else
+        {
+            $table = "watch_list";
+        }
+
+
+        $query = "SELECT * FROM $table WHERE user_Id = $user_id;";
+
+        // get list id when seraching for the movies.
+
+
+        $result = mysqli_query($conn,$query);
+
+        if (!$result)
+        {
+            echo "Error with SQL query";
+            mysqli_free_result($result);
+            mysqli_close($conn);
+        }
+
+        else
+        {
+            $num_row = mysqli_num_rows($result);
+
+            if ($num_row >= 1 )
+            {
+
+            while ($row = mysqli_fetch_assoc($result))
+            {
+
+            echo "<button class='dropdown-item russo-one'"."onclick='add_movie($json_output->id,".$row['List_id']. ")'>" .$row['List_title']."</button>";
+            }
+            mysqli_free_result($result);
+            mysqli_close($conn);
+            }
+            else
+            {
+                echo "<button class='dropdown-item russo-one' href='watchlist.php'>Create a list!</a>";
+            }
+
+    } 
+
+    }
+    else
+    {
+        echo "<button class='dropdown-item russo-one' data-toggle='modal' data-target='#loginModalCenter'>Login</button>";
+
+    }     
+  ?>
+</div>
+</div>
+
+
 <span id="response"></span>
 <div class="p-2 ">
 <a href="https://www.imdb.com/title/<?php echo $json_output->imdb_id; ?>"><i class="fab fa-imdb"></i></a>
@@ -163,7 +236,7 @@ if (empty($json_output->genres) == false) // if genre array exists display all g
 
 
 
-<h5 class="text-left h5   mt-4"> <?php  echo $json_output->overview ?> </h5>
+<p class="text-left mt-4"> <?php  echo $json_output->overview ?> </p>
 </div>
 </div>
 </div>

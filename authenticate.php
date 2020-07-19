@@ -100,6 +100,7 @@ if ( isset($_POST["email"]) && !empty($_POST["email"]) AND isset($_POST["pwd"]) 
                         // Create a session after user has logged in. 
                         $userinfo = mysqli_fetch_assoc($result);
                         $_SESSION["user_Id"] = $userinfo["user_Id"];
+                        $_SESSION["Username"] = $userinfo["Username"];
 
                         // free the memory assocaited with the login result
                         mysqli_free_result($result);

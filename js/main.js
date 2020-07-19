@@ -40,12 +40,10 @@ function search()
 
 
 
-function add_movie(id)
+function add_movie(movie_id,list_id)
 {
-    xhr.open("GET","add_movie.php?id=" + encodeURIComponent(id), true);
+    xhr.open("GET","add_movie.php?movie_id=" + encodeURIComponent(movie_id) + "&list_id=" + encodeURIComponent(list_id)  , true);
         
-
-
         xhr.onreadystatechange = function() 
         {
             if (xhr.readyState == 4 && xhr.status == 200)
@@ -57,22 +55,13 @@ function add_movie(id)
                     $('#loginModalCenter').modal();
 
                 }
-        
-
                 else
                 {
                     document.getElementById("response").innerHTML = result;
 
                     $("#response").fadeIn(3000);
                     $("#response").fadeOut(3000);
-
-
                 }
-               
-                    
-
-            
-
             }
         }
 
@@ -154,6 +143,30 @@ function add_list()
 
 
     
+
+}
+
+function show_list_movies(list_id)
+{
+    xhr.open("GET","get_movielist.php?list_id=" + encodeURIComponent(list_id), true);
+        
+
+
+        xhr.onreadystatechange = function() 
+        {
+            if (xhr.readyState == 4 && xhr.status == 200)
+            {
+                var result = xhr.responseText;
+
+                document.getElementById(list_id).innerHTML = result;
+
+                $("#response").fadeIn(3000);
+            }
+        }
+
+        xhr.send(null);
+
+
 
 }
 
