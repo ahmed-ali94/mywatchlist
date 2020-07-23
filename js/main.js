@@ -58,9 +58,9 @@ function add_movie(movie_id,list_id)
                 else
                 {
                     document.getElementById("response").innerHTML = result;
-
+                    $("#response").hide();
                     $("#response").fadeIn(3000);
-                    $("#response").fadeOut(3000);
+                    $("#response").slideUp("slow");
                 }
             }
         }
@@ -160,7 +160,8 @@ function show_list_movies(list_id)
 
                 document.getElementById(list_id).innerHTML = result;
 
-                $("#response").fadeIn(3000);
+                $('#show_movies_btn_' + list_id).remove();
+
             }
         }
 
@@ -169,9 +170,6 @@ function show_list_movies(list_id)
 
 
 }
-
-
-
 
 function login()
 {

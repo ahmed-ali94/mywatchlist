@@ -118,19 +118,12 @@ $total_pages = $json_output->total_pages;
 
 if ($total_pages > 1)
 {
-
-
-
-
     echo "<div class='container'>\n"
     ."<nav  aria-label='Page navigation example'>\n"
     ."<ul class='pagination justify-content-center'>\n"
     ."<li class='page-item disabled'>\n"
     ."<a class='page-link' href='#' tabindex='-1'>Previous</a>\n"
     . "</li>";
-
-
-        
 
     for($i = max(1, $cur_page - 5); $i <= min($cur_page + 5, $total_pages); $i++)
     {
@@ -160,7 +153,6 @@ if ($total_pages > 1)
 
 }
 
-
 }
 
 else
@@ -168,7 +160,6 @@ else
     echo "<p>No movies found!</p>";
 
 }
-
 
 }
 
@@ -181,8 +172,7 @@ else
 </div>
  </div>
 </div>
-
-
+<?php include("inc/footer.inc")?> 
 </body>
 
 </html>

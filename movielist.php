@@ -102,12 +102,12 @@ else
                while ($row = mysqli_fetch_assoc($result))
                {
 
-                echo "<div class='card bg-dark mb-4'>\n"
+                echo "<div id='list_".$row['List_id']. "'class='card bg-dark mb-4'>\n"
                 ."<div class='card-header russo-one'>".$row["List_title"]."</div>\n"
                 ."<div class='card-body'>\n"
                 ."<p class='card-text text-center'>".$row["List_desc"]."</p><hr class='hr d-flex mr-auto w-25' />\n"
-                ."<button class='btn btn-outline-light'"."onclick='show_list_movies(" .$row['List_id']. ")'>Show Movies</button>\n"
-                ."<div id='" .$row['List_id']. "'class='row mt-4'></div>\n"
+                ."<button id='show_movies_btn_". $row["List_id"]. "' class='btn btn-outline-light movielist_button'"."onclick='show_list_movies(" .$row['List_id']. ")'>Show Movies</button>\n"
+                ."<div id='" .$row['List_id']."' class='row mt-4'></div>\n"
                 ."</div>\n"
                 ."</div>";
                }
@@ -123,7 +123,6 @@ else
               }
 
           }
-
           ?>
             
         </div>
@@ -144,6 +143,7 @@ else
               </div>
         
             </div>
+<?php include("inc/footer.inc")?> 
 <script>
     $("#close").click(function() {
 

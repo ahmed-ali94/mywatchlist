@@ -24,30 +24,12 @@
         
       </div>
     </div>
-
-
-
-    
-
-  
     <div class="container">
       <div id="results">
         <div id="rows" class="row">
-
         </div>
-      
-        
-
-
       </div>
-
     </div>
-    
-
-
-
-
-
-    
+    <?php include("inc/footer.inc")?>  
 </body>
 </html>

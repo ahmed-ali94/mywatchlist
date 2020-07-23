@@ -47,8 +47,7 @@ if (isset($_SESSION["user_Id"]) && isset($_GET["list_id"]))
 
                 echo "<div class='col-auto'><a href='movie.php?id=".$row['Movie']."'><img class='mb-3 img-fluid similar' src='http://image.tmdb.org/t/p/w154/".$row['Poster_path']. "'alt='" .$row['Movie']. "'></a></div>";
 
-                }
-
+                } 
             }
 
             else

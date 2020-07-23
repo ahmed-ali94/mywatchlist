@@ -69,8 +69,6 @@ if ( isset($_GET["email"]) && isset($_GET["hash"]) )
                 
             }
 
-
-
         }
 
         else
@@ -87,11 +85,6 @@ if ( isset($_GET["email"]) && isset($_GET["hash"]) )
             
         }
     }
-
-
-
-
-
 }
 
 else
@@ -99,5 +92,6 @@ else
     header("Location: home.php");
 }
 ?>
+<?php include("inc/footer.inc") ?>
 </body>
 </html>

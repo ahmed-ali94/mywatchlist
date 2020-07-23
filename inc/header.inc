@@ -42,6 +42,7 @@
         </div>
       </nav>
     </header>
+    <div class="wrap">
 <!-- Modal -->
   <!--Login-->
   <div class="modal fade" id="loginModalCenter" tabindex="-1" role="dialog" aria-labelledby="loginModalCenterTitle" aria-hidden="true">
@@ -76,7 +77,6 @@
       </div>
     </div>
   </div>
-</div>
 
 <!-- Signup-->
 <div class="modal fade " id="signupModalCenter" tabindex="-1" role="dialog" aria-labelledby="signupModalCenterTitle" aria-hidden="true">
@@ -143,12 +143,7 @@
         </form>
 
         <div id="server_response">
-
         </div>
-        
-         
-
-      
       </div>
       <div class="modal-footer modal-background-purple">
         <button type="button" class="btn btn-primary text-purple" onclick="signup_validation()">Register</button>

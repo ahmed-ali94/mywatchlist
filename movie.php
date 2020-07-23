@@ -117,9 +117,6 @@ if (empty($json_output->genres) == false) // if genre array exists display all g
 {
     $lastgenre = end($json_output->genres);
     
-
-    
-
     foreach($json_output->genres as $genre) // display all genres
     {
         
@@ -149,9 +146,9 @@ if (empty($json_output->genres) == false) // if genre array exists display all g
 <div class="p-2 mr-auto">
 <h4 class="h4 text-left russo-one"> Overview</h4>
 </div>
-<div class="btn-group btn-group-sm mr-4 dropup">
-  <button type="button" class="btn  btn-light">Add</button>
-  <button type="button" class="btn btn-outline-warning dropdown-toggle dropdown-toggle-split" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+<div class="btn-group mr-4 dropup my-auto">
+  <button type="button" class="btn  btn-success">Add</button>
+  <button type="button" class="btn btn-success dropdown-toggle dropdown-toggle-split" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
     <span class="sr-only">Toggle Dropdown</span>
   </button>
   <div class="dropdown-menu bg-dark">
@@ -221,9 +218,6 @@ if (empty($json_output->genres) == false) // if genre array exists display all g
   ?>
 </div>
 </div>
-
-
-<span id="response"></span>
 <div class="p-2 ">
 <a href="https://www.imdb.com/title/<?php echo $json_output->imdb_id; ?>"><i class="fab fa-imdb"></i></a>
 </div>
@@ -231,12 +225,12 @@ if (empty($json_output->genres) == false) // if genre array exists display all g
 <p class="russo-one pt-2"><?php echo "$json_output->vote_average / 10"; ?></p>
 </div>
 </div>
+<div id="response" class="text-center mb-4"></div>
 <hr class="hr w-25 text-center">
 </div>
-
-
-
-<p class="text-left mt-4"> <?php  echo $json_output->overview ?> </p>
+<div class="container">
+<p class="text-left text-light mt-4 "> <?php  echo $json_output->overview ?> </p>
+</div>
 </div>
 </div>
 </div>
@@ -323,9 +317,7 @@ if (empty($json_output->videos) == false) // if video array exists display  trai
                 <div class="col-sm-6">
                     <div id="directors" class='mt-4'>
                     <h6 class='text-left russo-one'>Directors</h6>
-                        
                         <?php
-
                         foreach ($json_output->credits->crew as $crew)
                         {
                             if ($crew->job == "Director")
@@ -345,11 +337,7 @@ if (empty($json_output->videos) == false) // if video array exists display  trai
 
                             }
                         }
-                        
-                        
                         ?>
-                        
-                    
                     </div>
 
                     <div id="producers">
@@ -379,10 +367,7 @@ if (empty($json_output->videos) == false) // if video array exists display  trai
                         }
 
                     ?>
-
-
                     </div>
-
                     <div id="writers">
 
                     <h6 class='text-left russo-one'>Screenplay</h6>
@@ -410,8 +395,6 @@ if (empty($json_output->videos) == false) // if video array exists display  trai
                         }
 
                     ?>
-
-
                     </div>
 
                     <div id="composer">
@@ -441,15 +424,7 @@ if (empty($json_output->videos) == false) // if video array exists display  trai
                         }
 
                     ?>
-
-
                     </div>
-
-
-                    
-
-
-
                 </div>
 
                 <div class="col-sm-6">
@@ -479,21 +454,12 @@ if (empty($json_output->videos) == false) // if video array exists display  trai
                         }
 
                     ?>
-
-
-                
-                
-                
                 </dl>
                 
                 </div>
                 </div>
-
-
                 </div>
                 </div>
-                
-
 
             <div id="box_office" class="card-body text-left tab-pane fade">
                 <h6 class="text-center russo-one">Box Office</h6>
@@ -522,46 +488,12 @@ if (empty($json_output->videos) == false) // if video array exists display  trai
 
                         
                     }
-                
-                
                 ?></dd>
-
-                
-            
-            
-            
-            
-            
             </dl>
-
         </div>
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            </div>
-            
-
-
-
-
-
-
-
-
             </div>
             </div>
-
-
-            
-
-
+            </div>
+<?php include("inc/footer.inc")?> 
 </body>
 </html>
