@@ -1,21 +1,6 @@
-<?php session_start(); ?>
-<!DOCTYPE html>
-<html lang="en">
-<?php include("inc/head.inc") ?>
-<body>
-<?php include("inc/header.inc") ?>
-
-<div class="container">
-      <div id="results">
-        <div id="rows" class="row">
-
-        
-    
-
 <?php 
-
+session_start();
 require_once ("sanatise_data.php");
-
 if (isset($_GET["search"]) && strlen(trim($_GET['search'])) > 1 ) // checks if user has entred search text and contains no whitespace in the beggining
 {
     if (isset($_GET["page"])) 
@@ -32,29 +17,40 @@ if (isset($_GET["search"]) && strlen(trim($_GET['search'])) > 1 ) // checks if u
 
     $search = sanatise_input($search);
 
-$encode_search = urlencode($search);
+    $encode_search = urlencode($search);
 
-$encode_page = urlencode($cur_page);
+    $encode_page = urlencode($cur_page);
 
-// Request movie search with TMDB using cURL
+    // Request movie search with TMDB using cURL
 
 
-$url = "https://api.themoviedb.org/3/search/movie?api_key=c2293950755394e5c99ca7f387cb2c2d&query=$encode_search&page=$encode_page";
+    $url = "https://api.themoviedb.org/3/search/movie?api_key=c2293950755394e5c99ca7f387cb2c2d&query=$encode_search&page=$encode_page";
 
-$ch = curl_init($url);
+    $ch = curl_init($url);
 
-curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1); 
+    curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1); 
 
-$result = curl_exec($ch);
+    $result = curl_exec($ch);
 
-if (curl_errno($ch)) {
-    echo 'Error:' . curl_error($ch);
-}
+    if (curl_errno($ch)) {
+        echo 'Error:' . curl_error($ch);
+    }
 
-$json_output = json_decode($result);
+    $json_output = json_decode($result);
 
-curl_close($ch);
-
+    curl_close($ch);
+?>
+<!DOCTYPE html>
+<html lang="en">
+<?php include("inc/head.inc") ?>
+<body>
+<?php include("inc/header.inc") ?>
+<div class="container mt-4 pl-0 pr-0">
+      <div class="card bg-dark">
+        <div class="card-header text-center"> <?php echo "Found <span class='russo-one'> ". $json_output->total_results." </span> titles matching <span class='russo-one'>". ucfirst($search)."</span>"; ?></div>
+        <div class="card-body">
+        <div class="row">
+<?php 
 if ($json_output->total_results != 0)
 {
 
@@ -64,7 +60,6 @@ foreach($json_output->results as $movie)
     {
     echo "<div class='col-sm-3 text-center mb-4'>\n"
     ."<div id='$movie->id'>\n"
-    ."<p class=' russo-one'> $movie->title </p>\n"
     ."<a href='movie.php?id=$movie->id'>\n"
     ."<div class='img-container'>\n"
     ."<img class='img-thumbnail' src='http://image.tmdb.org/t/p/w185$movie->poster_path' data-toggle='modal' data-target='#movie_info'>\n"
@@ -108,8 +103,7 @@ foreach($json_output->results as $movie)
     ."</div>\n"
     ."</a>\n"
     ."</div>";
-    }
-    
+    }  
 }
 
 // PAGNIATION
@@ -118,8 +112,9 @@ $total_pages = $json_output->total_pages;
 
 if ($total_pages > 1)
 {
-    echo "<div class='container'>\n"
-    ."<nav  aria-label='Page navigation example'>\n"
+    echo "</div>\n"
+    ."<div class='container'>\n"
+    ."<nav class='bg-dark' aria-label='Page navigation example'>\n"
     ."<ul class='pagination justify-content-center'>\n"
     ."<li class='page-item disabled'>\n"
     ."<a class='page-link' href='#' tabindex='-1'>Previous</a>\n"
@@ -147,8 +142,7 @@ if ($total_pages > 1)
     echo "</li>\n"
     ."</ul>\n"
     ."</nav>\n"
-    ."</div>";
-        
+    ."</div>"; 
     }
 
 }
@@ -170,9 +164,7 @@ else
 
 ?>
 </div>
- </div>
 </div>
 <?php include("inc/footer.inc")?> 
 </body>
-
 </html>

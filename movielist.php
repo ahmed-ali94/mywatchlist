@@ -52,8 +52,8 @@ else
     </div>
   </div>
 
-  <div class="container">
-    <div class="card bg-dark">
+  <div class="container pl-0 pr-0">
+    <div class="card bg-dark mt-4">
         <div class="card-header">
             <h5 class="russo-one text-center"><?php echo $_SESSION["Username"]. " Watch List";?></h5>
         </div>

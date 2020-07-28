@@ -229,7 +229,7 @@ if (empty($json_output->genres) == false) // if genre array exists display all g
 <hr class="hr w-25 text-center">
 </div>
 <div class="container">
-<p class="text-left text-light mt-4 "> <?php  echo $json_output->overview ?> </p>
+<p class="text-left text-light dim mt-4 "> <?php  echo $json_output->overview ?> </p>
 </div>
 </div>
 </div>
@@ -297,7 +297,7 @@ if (empty($json_output->videos) == false) // if video array exists display  trai
 </div>
 </div>
 
-<div class="container mt-4">
+<div class="container mt-4 pl-0 pr-0">
             <div class="card text-center bg-dark ">
                 <div class="card-header">
                     <ul class="nav nav-tabs card-header-tabs">

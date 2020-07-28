@@ -16,27 +16,33 @@ function enter_key()
 }
 window.onload = enter_key;
 
+$(document).ready(function() {
 
+    $("#header_search").keypress(function(e) {
 
-function search()
-{
-    var search = document.getElementById("search").value;
+        if(e.which == 13) // enter key pressed
+        {
+            var search = $(this).val();
 
-    if (search == "")
-    {
-        var searchbar = document.getElementById("search");
+            if (search != "")
+            {
+                window.location.href = "request.php?search=" + encodeURIComponent(search);
+                
+            }
 
-        document.querySelector("search").style.border = "2px solid red";
-    }
-
-    else
-    {
-        window.location.href = "request.php?search=" + encodeURIComponent(search);
-
-    }
-
+        }
     
-}
+    
+    
+    });
+});
+
+
+
+
+
+
+
 
 
 

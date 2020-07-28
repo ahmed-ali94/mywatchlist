@@ -1,5 +1,5 @@
 <header>
-      <nav class="navbar navbar-expand-lg navbar-dark bg-dark border-bottom border-gold">
+      <nav class="navbar navbar-expand-lg sticky-top navbar-dark bg-dark border-bottom border-secondary">
         <a class="navbar-brand main-font" href="home.php">Movie Watchlist</a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
           <span class="navbar-toggler-icon"></span>
@@ -8,17 +8,19 @@
           <ul class="navbar-nav ml-auto">
             <!-- Button trigger modal -->
             <li class="nav-item  mr-5  ">
-            <div class="form-inline ">
-              <input class="form-control mr-sm-2" id="search" name="search" placeholder="Search">
-              <input type="button" class="btn btn-outline-light my-2 my-sm-0" value="Search" id="button" onclick="search()">
-          </div>
+              <div class="input-group input-group-md">
+                <div class="input-group-prepend">
+                    <span class="input-group-text" id="basic-addon1"><i class="fas fa-search fa-1x text-secondary"></i></span>
+                  </div>
+                <input class="form-control" id="header_search" name="search" placeholder="Search">
+            </div>
             </li>
             <?php
             if (isset($_SESSION["user_Id"]))
             {
               echo "<div class='btn-group mr-3'>\n"
-              ."<button type='button' class='btn btn-warning'>".$_SESSION["Username"]."</button>\n"
-              ."<button type='button' class='btn btn-warning dropdown-toggle dropdown-toggle-split' data-toggle='dropdown' aria-haspopup='true' aria-expanded='false'>\n"
+              ."<button type='button' class='btn btn-outline-light russo-one'>".$_SESSION["Username"]."</button>\n"
+              ."<button type='button' class='btn btn-outline-light  dropdown-toggle dropdown-toggle-split' data-toggle='dropdown' aria-haspopup='true' aria-expanded='false'>\n"
               ."<span class='sr-only'>Toggle Dropdown</span>\n"
               ."</button>\n"
               ."<div class='dropdown-menu'>\n"
@@ -31,10 +33,10 @@
             else
             {
               echo  "<li class='nav-item mr-2'>\n"
-                    ."<button type='button' id='login' class='btn btn-primary text-purple' data-toggle='modal' data-target='#loginModalCenter'>Login</button>\n"
+                    ."<button type='button' id='login' class='btn btn-outline-light russo-one' data-toggle='modal' data-target='#loginModalCenter'>Login</button>\n"
                     ."</li>\n"
                     ."<li class='nav-item'>\n"
-                    ."<button type='button' id='signup' class='btn btn-primary text-purple' data-toggle='modal' data-target='#signupModalCenter'>Signup</button>\n"
+                    ."<button type='button' id='signup' class='btn btn-outline-light russo-one' data-toggle='modal' data-target='#signupModalCenter'>Signup</button>\n"
                     ."</li>";
             }
             ?>
@@ -48,13 +50,13 @@
   <div class="modal fade" id="loginModalCenter" tabindex="-1" role="dialog" aria-labelledby="loginModalCenterTitle" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered" role="document">
       <div class="modal-content">
-        <div class="modal-header modal-background-purple russo-one">
+        <div class="modal-header bg-dark russo-one">
           <h5 class="modal-title" id="loginModalCenterTitle">Login</h5>
           <button type="button" class="close" data-dismiss="modal" aria-label="Close">
             <span aria-hidden="true">&times;</span>
           </button>
         </div>
-        <div id="login_modal_body" class="modal-body text-purple">
+        <div id="login_modal_body" class="modal-body text-dark">
             <form>
                 <div class="form-group">
                   <label for="loginInputEmail1">Email address</label>
@@ -71,8 +73,8 @@
               </form>
               <div id ="login_message"></div>
         </div>
-        <div class="modal-footer modal-background-purple russo-one">
-          <button type="button" class="btn btn-primary text-purple" onclick="login()">Login</button>
+        <div class="modal-footer bg-dark russo-one">
+          <button type="button" class="btn btn-outline-light russo-one" onclick="login()">Login</button>
         </div>
       </div>
     </div>
@@ -82,13 +84,13 @@
 <div class="modal fade " id="signupModalCenter" tabindex="-1" role="dialog" aria-labelledby="signupModalCenterTitle" aria-hidden="true">
   <div class="modal-dialog modal-dialog-centered" role="document">
     <div class="modal-content">
-      <div class="modal-header modal-background-purple russo-one">
+      <div class="modal-header bg-dark russo-one">
         <h5 class="modal-title" id="signupModalCenterTitle">Register</h5>
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
       </div>
-      <div class="modal-body text-purple" id="sign_up_body">
+      <div class="modal-body text-dark" id="sign_up_body">
         <form class="needs-validation" novalidate>
           <div class="form-group">
           <label for="sign_pwd ">Username</label>
@@ -145,8 +147,8 @@
         <div id="server_response">
         </div>
       </div>
-      <div class="modal-footer modal-background-purple">
-        <button type="button" class="btn btn-primary text-purple" onclick="signup_validation()">Register</button>
+      <div class="modal-footer bg-dark">
+        <button type="button" class="btn btn-outline-light russo-one" onclick="signup_validation()">Register</button>
       </div>
     </div>
   </div>
