@@ -24,7 +24,7 @@ if (isset($_GET["search"]) && strlen(trim($_GET['search'])) > 1 ) // checks if u
     // Request movie search with TMDB using cURL
 
 
-    $url = "https://api.themoviedb.org/3/search/movie?api_key=c2293950755394e5c99ca7f387cb2c2d&query=$encode_search&page=$encode_page";
+    $url = "https://api.themoviedb.org/3/search/movie?api_key=[INSERTAPIKEYHERE]&query=$encode_search&page=$encode_page";
 
     $ch = curl_init($url);
 
